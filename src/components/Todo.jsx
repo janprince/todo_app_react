@@ -2,10 +2,11 @@ import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 
 function Todo() {
-    const [tasks, setTasks] = useState(["clean room", "remove cowebs", "visit family"])
+    const [tasks, setTasks] = useState([])
     const [mode, setMode] = useState("add")
     const [inputTask, setInputTask] = useState("")
 
+    // to keep track of task being edited
     const [toEdit, setToEdit] = useState(0)
 
     const taskItems = tasks.map((t, i) => {
@@ -49,7 +50,7 @@ function Todo() {
             <div>
                 <h2>Task List </h2>
                 <div className="inputDiv">
-                    <input className="taskInput" type="text" placeholder="Write a Task" value={inputTask} onChange={(e) => setInputTask(e.target.value)} onKeyPress={(e) => {e.key == "Enter" ? handleAdd : console.log("Not Enter") }} />
+                    <input className="taskInput" type="text" placeholder="Write a Task" value={inputTask} onChange={(e) => setInputTask(e.target.value)} onKeyPress={(e) => e.key == "Enter" ? handleAdd() : console.log("Not Enter")} />
                     <a href="#" className="addBtn" onClick={handleAdd}>{mode == "add" ? "ADD TASK" : "SAVE TASK" }</a>
                 </div>
             </div>
@@ -57,6 +58,7 @@ function Todo() {
             <div className="tasks">
                 <h2>Tasks</h2>
                 {tasks.length != 0 ? taskItems : <p>No Items</p>}
+                <p className="tasksNo">{tasks.length} {tasks.length != 1 ? "Tasks" : "Task" } </p>
             </div>
         </>
     );

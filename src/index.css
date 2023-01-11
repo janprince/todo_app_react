@@ -159,3 +159,10 @@ span {
   cursor: pointer;
   margin-right: 10px;
 }
+
+.tasksNo {
+  text-align: end;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
